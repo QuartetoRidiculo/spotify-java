@@ -2,6 +2,7 @@ package app;
 
 import entities.*;
 import enums.Genre;
+import exceptions.ValidTime;
 import utils.Utils;
 
 import javax.swing.*;
@@ -80,16 +81,29 @@ public class Program {
             Catalog catalog = new Catalog();
 
             Medias music = new Music("Rap do Minecraft","Tauz",3,10,Genre.RAP);
-            catalog.addMedia(music);
+
+            try {
+                catalog.addMedia(music);
+            } catch (ValidTime e) {
+                System.out.println(e.getMessage());
+            }
 
            Medias audiobook = new Audiobook("O Hobbit","J. R. R Tolkien",180,30,Genre.FANTASY);
 
-           catalog.addMedia(audiobook);
+            try {
+                catalog.addMedia(music);
+            } catch (ValidTime e) {
+                System.out.println(e.getMessage());
+            }
 
             Medias podcast = new Podcast("Entrevistando Sophio","Flow Podcast",120,30);
 
-           catalog.addMedia(podcast);
-
+            try {
+                catalog.addMedia(music);
+            } catch (ValidTime e) {
+                System.out.println(e.getMessage());
+            }
+            
             int choice = Utils.exibirMenu(mainMenu);
 
             if (choice == -1 || choice == 4) {
