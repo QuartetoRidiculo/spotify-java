@@ -4,6 +4,7 @@ import entities.*;
 import enums.Genre;
 import exceptions.ValidTime;
 import service.ListMedia;
+import service.RemovePlaylist;
 import utils.Utils;
 
 import javax.swing.*;
@@ -41,6 +42,7 @@ public class Program {
                 "Buscar mídia por gênero"));
 
         Catalog catalog = new Catalog();
+        User user = null;
 
         Boolean login = false;
 
@@ -81,7 +83,7 @@ public class Program {
                 }
             }
 
-            User user = new User(name, email);
+            user = new User(name, email);
 
             login = true;
 
@@ -143,7 +145,7 @@ public class Program {
                             // Visualizar detalhes da playlist (músicas, duração total, etc.)
                             break;
                         case 5:
-                            // Excluir playlist
+                            RemovePlaylist.removePlaylist(user);
                             break;
                         default:
                             break;
@@ -165,13 +167,22 @@ public class Program {
                             ListMedia.listMedia(catalog);
                             break;
                         case 2:
-                            // Buscar mídia por título
                             break;
                         case 3:
-                            // Buscar mídia por artista
                             break;
                         case 4:
-                            // Buscar mídia por gênero
+                            break;
+                        case 5:
+                            String titulo = JOptionPane.showInputDialog(null, "Digite o titulo para realizar a buscar ");
+                            catalog.buscarPorTitulo(titulo);
+                            break;
+                        case 6:
+                            String artista = JOptionPane.showInputDialog(null, "Digite o nome do ártista para realizar a buscar ");
+                            catalog.buscarPorArtista(artista);
+                            break;
+                        case 7:
+                            String genero = JOptionPane.showInputDialog(null, "Digite o gênero para realizar a buscar ");
+                            catalog.buscarPorGenero(genero);
                             break;
                         default:
                             break;
