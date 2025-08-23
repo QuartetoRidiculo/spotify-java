@@ -3,8 +3,10 @@ package app;
 import entities.*;
 import enums.Genre;
 import exceptions.ValidTime;
+import service.CreatePlaylist;
 import service.ListMedia;
 import service.RemovePlaylist;
+import service.ViewPlaylist;
 import utils.Utils;
 
 import javax.swing.*;
@@ -130,7 +132,7 @@ public class Program {
 
                     switch (playlistChoice) {
                         case 0:
-                            // criar playlist
+                            CreatePlaylist.createPlaylist(user);
                             break;
                         case 1:
                             // listar playlist
@@ -142,7 +144,7 @@ public class Program {
                             // Remover mídia da playlist
                             break;
                         case 4:
-                            // Visualizar detalhes da playlist (músicas, duração total, etc.)
+                            ViewPlaylist.viewPlaylist(user);
                             break;
                         case 5:
                             RemovePlaylist.removePlaylist(user);

@@ -8,7 +8,7 @@ import javax.swing.*;
 public class RemovePlaylist {
     public static void removePlaylist(User user) {
         if(user.getPlaylistNames().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Nenhum playlist foi encontrada.");
+            JOptionPane.showMessageDialog(null, "Nenhuma playlist foi encontrada.");
             return;
         }
         int playlistChoice = Utils.exibirMenu(user.getPlaylistNames());
