@@ -1,5 +1,7 @@
 package entities;
 
+import exceptions.ValidTime;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +64,14 @@ public String listingMedia(){
     }
 
     //Método para adicionar mídia
-    public void addMedia(Medias media){
+    public void addMedia(Medias media) throws ValidTime {
+
+    //Fazendo exceção de tempo válido
+    if(media.getMinutes() < 0 || media.getSeconds() > 59 || media.getSeconds() < 0){
+
+        throw new ValidTime("Insira um tempo válido");
+
+    }
 
     mediaList.add(media);
 

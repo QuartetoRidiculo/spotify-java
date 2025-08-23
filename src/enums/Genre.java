@@ -8,6 +8,7 @@ public enum Genre {
     JAZZ,
     INDIE,
     MPB,
+    RAP,
 
     //Gêneros de audiobook
     FANTASY,

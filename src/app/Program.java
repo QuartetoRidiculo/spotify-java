@@ -1,6 +1,6 @@
 package app;
 
-import entities.User;
+import entities.*;
 import enums.Genre;
 import utils.Utils;
 
@@ -13,8 +13,19 @@ public class Program {
     public static void main(String[] args) {
 
         User user = new User("aaa", "aaaa");
+        Catalog catalog = new Catalog();
 
-        user.createPlaylist("sasas");
+        Medias music = new Music("Rap do Minecraft","Tauz",3,10,Genre.RAP);
+        catalog.addMedia(music);
+
+        Medias audiobook = new Audiobook("O Hobbit","J. R. R Tolkien",180,30,Genre.FANTASY);
+
+        catalog.addMedia(audiobook);
+
+        Medias podcast = new Podcast("Entrevistando Sophio","Flow Podcast",120,30);
+
+        catalog.addMedia(podcast);
+
 
         // Menu principal
         List<String> mainMenu = new ArrayList<>(List.of(
@@ -112,6 +123,8 @@ public class Program {
                     break;
                 default:
                     break;
+
+
             }
         }
     }
