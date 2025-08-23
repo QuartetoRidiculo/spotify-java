@@ -1,5 +1,6 @@
 package entities;
 
+import javax.print.attribute.standard.Media;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -86,5 +87,13 @@ public class User extends Playlist {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<String> getPlaylistNames() {
+        List<String> names = new ArrayList<>();
+        for (Playlist p : playlists) {
+            names.add(p.getName());
+        }
+        return names;
     }
 }
