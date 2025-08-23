@@ -3,6 +3,7 @@ package app;
 import entities.*;
 import enums.Genre;
 import exceptions.ValidTime;
+import service.ListMedia;
 import utils.Utils;
 
 import javax.swing.*;
@@ -39,21 +40,25 @@ public class Program {
                 "Buscar mídia por artista",
                 "Buscar mídia por gênero"));
 
-        while (true) {
+        Catalog catalog = new Catalog();
+
+        Boolean login = false;
+
+        do {
             String name;
-            while (true) {
+            while (true){
                 name = JOptionPane.showInputDialog("nome do usuário:");
 
                 if (name == null) {
-                    int exit = JOptionPane.showConfirmDialog(null,"Deseja encerrar o programa?");
+                    int exit = JOptionPane.showConfirmDialog(null, "Deseja encerrar o programa?");
 
-                    if(exit == JOptionPane.YES_OPTION) {
+                    if (exit == JOptionPane.YES_OPTION) {
                         System.exit(0);
                     }
                     continue;
                 }
 
-                if(!name.isBlank()){
+                if (!name.isBlank()) {
                     break;
                 }
             }
@@ -63,32 +68,24 @@ public class Program {
                 email = JOptionPane.showInputDialog("email do usuário:");
 
                 if (email == null) {
-                    int exit = JOptionPane.showConfirmDialog(null,"Deseja encerrar o programa?");
+                    int exit = JOptionPane.showConfirmDialog(null, "Deseja encerrar o programa?");
 
-                    if(exit == JOptionPane.YES_OPTION) {
+                    if (exit == JOptionPane.YES_OPTION) {
                         System.exit(0);
                     }
                     continue;
                 }
 
-                if(!email.isBlank() && email.contains("@")){
+                if (!email.isBlank() && email.contains("@")) {
                     break;
                 }
             }
 
             User user = new User(name, email);
-          
-            Catalog catalog = new Catalog();
 
-            Medias music = new Music("Rap do Minecraft","Tauz",3,10,Genre.RAP);
+            login = true;
 
-            try {
-                catalog.addMedia(music);
-            } catch (ValidTime e) {
-                System.out.println(e.getMessage());
-            }
-
-           Medias audiobook = new Audiobook("O Hobbit","J. R. R Tolkien",180,30,Genre.FANTASY);
+            Medias music = new Music("Rap do Minecraft", "Tauz", 3, 10, Genre.RAP);
 
             try {
                 catalog.addMedia(music);
@@ -96,14 +93,24 @@ public class Program {
                 System.out.println(e.getMessage());
             }
 
-            Medias podcast = new Podcast("Entrevistando Sophio","Flow Podcast",120,30);
+            Medias audiobook = new Audiobook("O Hobbit", "J. R. R Tolkien", 180, 30, Genre.FANTASY);
 
             try {
-                catalog.addMedia(music);
+                catalog.addMedia(audiobook);
             } catch (ValidTime e) {
                 System.out.println(e.getMessage());
             }
-            
+
+            Medias podcast = new Podcast("Entrevistando Sophio", "Flow Podcast", 120, 30);
+
+            try {
+                catalog.addMedia(podcast);
+            } catch (ValidTime e) {
+                System.out.println(e.getMessage());
+            }
+        } while (!login);
+
+        while (true) {
             int choice = Utils.exibirMenu(mainMenu);
 
             if (choice == -1 || choice == 4) {
@@ -155,7 +162,7 @@ public class Program {
                             // Cadastrar nova mídia (música, podcast, audiobook)
                             break;
                         case 1:
-                            // Listar todas as mídias do catálogo
+                            ListMedia.listMedia(catalog);
                             break;
                         case 2:
                             // Buscar mídia por título
@@ -171,11 +178,13 @@ public class Program {
                     }
                     break;
                 case 2:
-                    System.exit(0);
+                    int exit = JOptionPane.showConfirmDialog(null, "Deseja encerrar o programa?");
+
+                    if (exit == JOptionPane.YES_OPTION) {
+                        System.exit(0);
+                    }
                 default:
                     break;
-
-
             }
         }
     }
