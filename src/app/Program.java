@@ -1,6 +1,6 @@
 package app;
 
-import entities.User;
+import entities.*;
 import enums.Genre;
 import utils.Utils;
 
@@ -76,6 +76,19 @@ public class Program {
             }
 
             User user = new User(name, email);
+          
+            Catalog catalog = new Catalog();
+
+            Medias music = new Music("Rap do Minecraft","Tauz",3,10,Genre.RAP);
+            catalog.addMedia(music);
+
+           Medias audiobook = new Audiobook("O Hobbit","J. R. R Tolkien",180,30,Genre.FANTASY);
+
+           catalog.addMedia(audiobook);
+
+            Medias podcast = new Podcast("Entrevistando Sophio","Flow Podcast",120,30);
+
+           catalog.addMedia(podcast);
 
             int choice = Utils.exibirMenu(mainMenu);
 
@@ -147,6 +160,8 @@ public class Program {
                     System.exit(0);
                 default:
                     break;
+
+
             }
         }
     }
