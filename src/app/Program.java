@@ -4,6 +4,7 @@ import entities.User;
 import enums.Genre;
 import utils.Utils;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,14 +12,8 @@ import java.util.Scanner;
 public class Program {
 
     public static void main(String[] args) {
-
-        User user = new User("aaa", "aaaa");
-
-        user.createPlaylist("sasas");
-
         // Menu principal
         List<String> mainMenu = new ArrayList<>(List.of(
-
                 "Gerenciar Playlists",
                 "Catálogo de Mídias",
                 "Sair"));
@@ -36,11 +31,51 @@ public class Program {
         List<String> catalogMenu = new ArrayList<>(List.of(
                 "Cadastrar nova mídia",
                 "Listar todas as mídias do catálogo",
+                "Buscar audio book",
+                "Buscar música",
+                "Buscar podcast",
                 "Buscar mídia por título",
                 "Buscar mídia por artista",
                 "Buscar mídia por gênero"));
 
         while (true) {
+            String name;
+            while (true) {
+                name = JOptionPane.showInputDialog("nome do usuário:");
+
+                if (name == null) {
+                    int exit = JOptionPane.showConfirmDialog(null,"Deseja encerrar o programa?");
+
+                    if(exit == JOptionPane.YES_OPTION) {
+                        System.exit(0);
+                    }
+                    continue;
+                }
+
+                if(!name.isBlank()){
+                    break;
+                }
+            }
+
+            String email;
+            while (true) {
+                email = JOptionPane.showInputDialog("email do usuário:");
+
+                if (email == null) {
+                    int exit = JOptionPane.showConfirmDialog(null,"Deseja encerrar o programa?");
+
+                    if(exit == JOptionPane.YES_OPTION) {
+                        System.exit(0);
+                    }
+                    continue;
+                }
+
+                if(!email.isBlank() && email.contains("@")){
+                    break;
+                }
+            }
+
+            User user = new User(name, email);
 
             int choice = Utils.exibirMenu(mainMenu);
 
@@ -109,7 +144,7 @@ public class Program {
                     }
                     break;
                 case 2:
-                    break;
+                    System.exit(0);
                 default:
                     break;
             }
