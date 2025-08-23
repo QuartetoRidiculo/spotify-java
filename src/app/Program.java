@@ -91,7 +91,7 @@ public class Program {
            Medias audiobook = new Audiobook("O Hobbit","J. R. R Tolkien",180,30,Genre.FANTASY);
 
             try {
-                catalog.addMedia(music);
+                catalog.addMedia(audiobook);
             } catch (ValidTime e) {
                 System.out.println(e.getMessage());
             }
@@ -99,7 +99,7 @@ public class Program {
             Medias podcast = new Podcast("Entrevistando Sophio","Flow Podcast",120,30);
 
             try {
-                catalog.addMedia(music);
+                catalog.addMedia(podcast);
             } catch (ValidTime e) {
                 System.out.println(e.getMessage());
             }
