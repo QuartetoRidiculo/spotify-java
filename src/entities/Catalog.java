@@ -85,40 +85,69 @@ public class Catalog {
         mediaList.remove(media);
     }
 
+
+    // Buscar por musica
+    public void buscarPorMusica (String musica){
+        boolean achou = false;
+        for (Medias m : mediaList) {
+            if (m.getArtist().trim().substring(0, 1).toLowerCase().contains(musica.toLowerCase().substring(0, 1)) ||
+                    m.getArtist().trim().equalsIgnoreCase(musica)) {
+                JOptionPane.showMessageDialog(null, m);
+                achou = true;
+            }
+
+        }
+        if (!achou) JOptionPane.showMessageDialog(null, "Nenhuma mídia encontrada para esse artista.");
+    }
+    // Buscar por podcast
+    public void buscarPorPodcast (String podcast){
+        boolean achou = false;
+        for (Medias m : mediaList) {
+            if (m.get().trim().substring(0, 1).toLowerCase().contains(podcast.toLowerCase().substring(0, 1)) ||
+                    m.getArtist().trim().equalsIgnoreCase(podcast)) {
+                JOptionPane.showMessageDialog(null, m);
+                achou = true;
+            }
+        }
+        if (!achou) JOptionPane.showMessageDialog(null, "Nenhuma mídia encontrada para esse nome");
+    }
     // Buscar por título
     public void buscarPorTitulo(String titulo) {
         boolean achou = false;
         for (Medias m : mediaList) {
-            if (m.getTitle().equalsIgnoreCase(titulo)) {
-                JOptionPane.showMessageDialog(null,m);
+            if (m.getTitle().trim().substring(0, 1).toLowerCase().contains(titulo.toLowerCase().substring(0, 1)) ||
+                    m.getTitle().trim().equalsIgnoreCase(titulo)) {
+                JOptionPane.showMessageDialog(null, m);
                 achou = true;
             }
-        }
-        if (!achou) JOptionPane.showMessageDialog(null,"Nenhuma mídia encontrada com esse título.");
+            if (!achou) JOptionPane.showMessageDialog(null, "Nenhuma mídia encontrada com esse título.");
 
+        }
     }
 
     // Buscar por artista
-    public void buscarPorArtista(String artista) {
+    public void buscarPorArtista (String artista){
         boolean achou = false;
         for (Medias m : mediaList) {
-            if (m.getArtist().equalsIgnoreCase(artista)) {
-                JOptionPane.showMessageDialog(null,m);
+            if (m.getArtist().trim().substring(0, 1).toLowerCase().contains(artista.toLowerCase().substring(0, 1)) ||
+                    m.getArtist().trim().equalsIgnoreCase(artista)) {
+                JOptionPane.showMessageDialog(null, m);
                 achou = true;
             }
         }
-        if (!achou) System.out.println("Nenhuma mídia encontrada para esse artista.");
+        if (!achou) JOptionPane.showMessageDialog(null, "Nenhuma mídia encontrada para esse artista.");
     }
 
     // Buscar por gênero
-    public void buscarPorGenero(String genero) {
+    public void buscarPorGenero (String genero){
         boolean achou = false;
         for (Medias m : mediaList) {
-            if (m.getGenre().toString().equalsIgnoreCase(genero)) {
-                JOptionPane.showMessageDialog(null,m);
+            if (m.getGenre().trim().substring(0, 1).toLowerCase().contains(genero.toLowerCase().substring(0, 1)) ||
+                    m.getGenre().trim().equalsIgnoreCase(genero)) { {
+                JOptionPane.showMessageDialog(null, m);
                 achou = true;
             }
         }
-        if (!achou) System.out.println("Nenhuma mídia encontrada nesse gênero.");
+        if (!achou) JOptionPane.showMessageDialog(null, "Nenhuma mídia encontrada nesse gênero.");
     }
 }

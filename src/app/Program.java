@@ -110,7 +110,7 @@ public class Program {
             }
         } while (!login);
 
-        while (true) {
+        while (login) {
             int choice = Utils.exibirMenu(mainMenu);
 
             if (choice == -1 || choice == 4) {
@@ -165,29 +165,28 @@ public class Program {
                             ListMedia.listMedia(catalog);
                             break;
                         case 2:
-                            String titulo = JOptionPane.showInputDialog(null,"Digite o titulo para realizar a buscar ");
-                            catalog.buscarPorTitulo(titulo);
+                            ;
                             break;
                         case 3:
-                            String artista = JOptionPane.showInputDialog(null,"Digite o nome do ártista para realizar a buscar ");
-                            catalog.buscarPorArtista(artista);
                             break;
                         case 4:
-                            String genero = JOptionPane.showInputDialog(null,"Digite o gênero para realizar a buscar ");
+                            break;
+                        case 5:
+                            String titulo = JOptionPane.showInputDialog(null, "Digite o titulo para realizar a buscar ");
+                            catalog.buscarPorTitulo(titulo);
+                            break;
+                        case 6:
+                            String artista = JOptionPane.showInputDialog(null, "Digite o nome do ártista para realizar a buscar ");
+                            catalog.buscarPorArtista(artista);
+                            break;
+                        case 7:
+                            String genero = JOptionPane.showInputDialog(null, "Digite o gênero para realizar a buscar ");
                             catalog.buscarPorGenero(genero);
                             break;
                         default:
                             break;
-                    }
-                    break;
-                case 2:
-                    int exit = JOptionPane.showConfirmDialog(null, "Deseja encerrar o programa?");
 
-                    if (exit == JOptionPane.YES_OPTION) {
-                        System.exit(0);
-                    }
-                default:
-                    break;
+                }
             }
         }
     }
