@@ -2,6 +2,7 @@ package entities;
 
 import exceptions.ValidTime;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,6 +85,16 @@ public void removeMedia(Medias media){
 
 }
 
-
+    public void buscarPorTitulo(String titulo) {
+        boolean achou = false;
+        for (Medias m : mediaList) {
+            if (m.getTitle().trim().substring(0, 1).toLowerCase().contains(titulo.toLowerCase().substring(0, 1)) ||
+                    m.getTitle().trim().equalsIgnoreCase(titulo)) {
+                JOptionPane.showMessageDialog(null, m);
+                achou = true;
+            }
+        }
+        if (!achou) JOptionPane.showMessageDialog(null, "Nenhuma mídia encontrada com esse título.");
+    }
 
 }
