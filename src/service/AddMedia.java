@@ -6,12 +6,12 @@ import exceptions.ValidTime;
 import utils.Utils;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AddMedia {
 
     public static void createAudiobook(List<String> genreAudiobook, Catalog catalog) {
-
         Object[] infoAudiobook = ObterDadosMedia.obterDadosMedia();
 
         int generoEscolhido = Utils.exibirMenu(genreAudiobook);
@@ -26,7 +26,6 @@ public class AddMedia {
     }
 
     public static void createMusic(List<String> genreMusica, Catalog catalog) {
-
         Object[] infoMusica = ObterDadosMedia.obterDadosMedia();
 
         int genero = Utils.exibirMenu(genreMusica);
@@ -42,7 +41,6 @@ public class AddMedia {
     }
 
     public static void createPodcast(Catalog catalog) {
-
         Object[] infoPodcast = ObterDadosMedia.obterDadosMedia();
 
         Medias podcast = new Podcast((String) infoPodcast[0], (String) infoPodcast[1], (Integer) infoPodcast[2], (Integer) infoPodcast[3]);
@@ -51,5 +49,25 @@ public class AddMedia {
         } catch (ValidTime e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
+    }
+
+    public static void addMediaPlaylist(User user, Catalog catalog) {
+        int playlistId = Utils.exibirMenu(user.getPlaylistNames());
+
+        if(playlistId == -1) {
+           return;
+        }
+
+        int mediaId = Utils.exibirMenu(catalog.getMediaTitles());
+
+        List<Medias> medias = catalog.getMediaList();
+
+        for(Medias m : medias) {
+            if(m.getTitle().equals(medias.get(mediaId).getTitle())) {
+                user.addMedia(playlistId, m);
+            }
+        }
+
+        JOptionPane.showMessageDialog(null, "O media foi adicionada com sucesso!");
     }
 }

@@ -13,13 +13,11 @@ import java.util.List;
 public class Program {
 
     public static void main(String[] args) throws ValidTime {
-        // Menu principal
         List<String> mainMenu = new ArrayList<>(List.of(
                 "Gerenciar Playlists",
                 "Catálogo de Mídias",
                 "Sair"));
 
-        // Gerenciar Playlists
         List<String> playlistMenu = new ArrayList<>(List.of(
                 "Criar playlist",
                 "Listar playlists",
@@ -28,7 +26,6 @@ public class Program {
                 "Visualizar detalhes da playlist",
                 "Excluir playlist"));
 
-        // Catálogo de Mídias
         List<String> catalogMenu = new ArrayList<>(List.of(
                 "Cadastrar nova mídia",
                 "Listar todas as mídias do catálogo",
@@ -65,7 +62,7 @@ public class Program {
 
         do {
             String name;
-            while (true){
+            while (true) {
                 name = JOptionPane.showInputDialog("nome do usuário:");
 
                 if (name == null) {
@@ -129,11 +126,15 @@ public class Program {
             }
         } while (!login);
 
-        while (true) {
+        while (login) {
             int choice = Utils.exibirMenu(mainMenu);
 
-            if (choice == -1 || choice == 4) {
-                break;
+            if (choice == -1 || choice == 2) {
+                int exit = JOptionPane.showConfirmDialog(null, "Deseja encerrar o programa?");
+
+                if (exit == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
             }
 
             switch (choice) {
@@ -150,10 +151,10 @@ public class Program {
                             CreatePlaylist.createPlaylist(user);
                             break;
                         case 1:
-                            // listar playlist
+                            ListPlaylist.listPlaylist(user);
                             break;
                         case 2:
-                            // Adicionar mídia à playlist
+                            AddMedia.addMediaPlaylist(user, catalog);
                             break;
                         case 3:
                             // Remover mídia da playlist
@@ -178,29 +179,25 @@ public class Program {
 
                     switch (cataloChoice) {
                         case 0:
-                            // Cadastrar nova mídia (música, podcast, audiobook)
-                            int escolhaMidia  = Utils.exibirMenu(choiceMedia);
+                            int escolhaMidia = Utils.exibirMenu(choiceMedia);
 
                             if (escolhaMidia == -1) {
                                 break;
                             }
-                                switch (escolhaMidia){
+                            switch (escolhaMidia) {
 
-                                    case 0:
-                                        //Add Audiobook
-                                        AddMedia.createAudiobook(genreAudiobook, catalog);
-                                        break;
-                                    case 1:
-                                        //Add musica
-                                        AddMedia.createMusic(genreMusica, catalog);
-                                        break;
-                                    case 2:
-                                        //Add Podcast
-                                        AddMedia.createPodcast(catalog);
-                                        break;
-                                    default:
-                                        break;
-                                }
+                                case 0:
+                                    AddMedia.createAudiobook(genreAudiobook, catalog);
+                                    break;
+                                case 1:
+                                    AddMedia.createMusic(genreMusica, catalog);
+                                    break;
+                                case 2:
+                                    AddMedia.createPodcast(catalog);
+                                    break;
+                                default:
+                                    break;
+                            }
                             break;
                         case 1:
                             ListMedia.listMedia(catalog);
@@ -225,12 +222,6 @@ public class Program {
                             break;
                     }
                     break;
-                case 2:
-                    int exit = JOptionPane.showConfirmDialog(null, "Deseja encerrar o programa?");
-
-                    if (exit == JOptionPane.YES_OPTION) {
-                        System.exit(0);
-                    }
                 default:
                     break;
             }
