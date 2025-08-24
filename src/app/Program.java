@@ -3,20 +3,16 @@ package app;
 import entities.*;
 import enums.Genre;
 import exceptions.ValidTime;
-import service.CreatePlaylist;
-import service.ListMedia;
-import service.RemovePlaylist;
-import service.ViewPlaylist;
+import service.*;
 import utils.Utils;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Program {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ValidTime {
         // Menu principal
         List<String> mainMenu = new ArrayList<>(List.of(
                 "Gerenciar Playlists",
@@ -47,6 +43,20 @@ public class Program {
                 "Audiobook",
                 "Música",
                 "Podcast"));
+
+        List<String> genreAudiobook = new ArrayList<>(List.of(
+                "FANTASY",
+                "SCI_FI",
+                "ROMANCE",
+                "RELIGIOUS"));
+
+        List<String> genreMusica = new ArrayList<>(List.of(
+                "ROCK",
+                "POP",
+                "JAZZ",
+                "INDIE",
+                "MPB",
+                "RAP"));
 
         Catalog catalog = new Catalog();
         User user = null;
@@ -169,6 +179,28 @@ public class Program {
                     switch (cataloChoice) {
                         case 0:
                             // Cadastrar nova mídia (música, podcast, audiobook)
+                            int escolhaMidia  = Utils.exibirMenu(choiceMedia);
+
+                            if (escolhaMidia == -1) {
+                                break;
+                            }
+                                switch (escolhaMidia){
+
+                                    case 0:
+                                        //Add Audiobook
+                                        AddMedia.createAudiobook(genreAudiobook, catalog);
+                                        break;
+                                    case 1:
+                                        //Add musica
+                                        AddMedia.createMusic(genreMusica, catalog);
+                                        break;
+                                    case 2:
+                                        //Add Podcast
+                                        AddMedia.createPodcast(catalog);
+                                        break;
+                                    default:
+                                        break;
+                                }
                             break;
                         case 1:
                             ListMedia.listMedia(catalog);
