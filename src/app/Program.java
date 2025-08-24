@@ -43,6 +43,11 @@ public class Program {
                 "Buscar mídia por artista",
                 "Buscar mídia por gênero"));
 
+        List<String> choiceMedia = new ArrayList<>(List.of(
+                "Audiobook",
+                "Música",
+                "Podcast"));
+
         Catalog catalog = new Catalog();
         User user = null;
 
@@ -164,7 +169,6 @@ public class Program {
                     switch (cataloChoice) {
                         case 0:
                             // Cadastrar nova mídia (música, podcast, audiobook)
-
                             break;
                         case 1:
                             ListMedia.listMedia(catalog);
@@ -181,11 +185,9 @@ public class Program {
                             break;
                         case 6:
                             String artista = JOptionPane.showInputDialog(null, "Digite o nome do ártista para realizar a buscar ");
-                           //catalog.buscarPorArtista(artista);
                             break;
                         case 7:
                             String genero = JOptionPane.showInputDialog(null, "Digite o gênero para realizar a buscar ");
-                            //catalog.buscarPorGenero(genero);
                             break;
                         default:
                             break;
