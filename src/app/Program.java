@@ -42,7 +42,11 @@ public class Program {
                 "Buscar mídia por título",
                 "Buscar mídia por artista",
                 "Buscar mídia por gênero"));
-        
+
+        List<String> choiceMedia = new ArrayList<>(List.of(
+                "Audiobook",
+                "Música",
+                "Podcast"));
 
         Catalog catalog = new Catalog();
         User user = null;
