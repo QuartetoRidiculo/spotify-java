@@ -217,6 +217,7 @@ public class Program {
                             break;
                         case 6:
                             String artista = JOptionPane.showInputDialog(null, "Digite o nome do ártista para realizar a buscar ");
+                            catalog.buscarPorArtista(artista);
                             break;
                         case 7:
                             catalog.BuscarPorGenero(genreAudiobook,genreMusica);
