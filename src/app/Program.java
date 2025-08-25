@@ -95,7 +95,7 @@ public class Program {
                     continue;
                 }
 
-                if (!email.isBlank() && email.contains("@")) {
+                if (!email.isBlank() && email.contains("@") && email.contains("mail")) {
                     break;
                 }
             }
@@ -206,10 +206,13 @@ public class Program {
                             ListMedia.listMedia(catalog);
                             break;
                         case 2:
+                            ListMedia.listAudiobook(catalog);
                             break;
                         case 3:
+                            ListMedia.listMusic(catalog);
                             break;
                         case 4:
+                            ListMedia.listPodcast(catalog);
                             break;
                         case 5:
                             String titulo = JOptionPane.showInputDialog(null, "Digite o titulo para realizar a buscar ");
