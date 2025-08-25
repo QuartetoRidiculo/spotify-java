@@ -13,7 +13,6 @@ public class Music extends Medias{
         super(title,artist,minutes,seconds,genre);
 
     }
-
     @Override
     public String toString(){
         return "Type: Music\n" + super.toString();

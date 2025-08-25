@@ -21,7 +21,6 @@ public class CreatePlaylist {
 
             break;
         }
-
         user.createPlaylist(name);
     }
 }

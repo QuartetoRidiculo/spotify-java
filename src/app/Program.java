@@ -66,7 +66,7 @@ public class Program {
         do {
             String name;
             while (true){
-                name = JOptionPane.showInputDialog("nome do usuário:");
+                name = JOptionPane.showInputDialog("Nome do usuário:");
 
                 if (name == null) {
                     int exit = JOptionPane.showConfirmDialog(null, "Deseja encerrar o programa?");
@@ -84,7 +84,7 @@ public class Program {
 
             String email;
             while (true) {
-                email = JOptionPane.showInputDialog("email do usuário:");
+                email = JOptionPane.showInputDialog("E-mail do usuário:");
 
                 if (email == null) {
                     int exit = JOptionPane.showConfirmDialog(null, "Deseja encerrar o programa?");
@@ -95,7 +95,7 @@ public class Program {
                     continue;
                 }
 
-                if (!email.isBlank() && email.contains("@")) {
+                if (!email.isBlank() && email.contains("@gmail.com")) {
                     break;
                 }
             }
@@ -212,14 +212,14 @@ public class Program {
                         case 4:
                             break;
                         case 5:
-                            String titulo = JOptionPane.showInputDialog(null, "Digite o titulo para realizar a buscar ");
+                            String titulo = JOptionPane.showInputDialog(null, "Informe o título para realizar a busca: ");
                             catalog.buscarPorTitulo(titulo);
                             break;
                         case 6:
-                            String artista = JOptionPane.showInputDialog(null, "Digite o nome do ártista para realizar a buscar ");
+                            String artista = JOptionPane.showInputDialog(null, "Informe o nome do ártista para realizar a busca: ");
                             break;
                         case 7:
-                            String genero = JOptionPane.showInputDialog(null, "Digite o gênero para realizar a buscar ");
+                            String genero = JOptionPane.showInputDialog(null, "Informe o gênero para realizar a buscar: ");
                             break;
                         default:
                             break;
