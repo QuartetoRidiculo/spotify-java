@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddMedia {
-
     public static void createAudiobook(List<String> genreAudiobook, Catalog catalog) {
         Object[] infoAudiobook = ObterDadosMedia.obterDadosMedia();
 
@@ -28,13 +27,13 @@ public class AddMedia {
     public static void createMusic(List<String> genreMusica, Catalog catalog) {
         Object[] infoMusica = ObterDadosMedia.obterDadosMedia();
 
-        int genero = Utils.exibirMenu(genreMusica);
-        Genre generoMusic = Genre.values()[genero];
+        int generoEscolhido = Utils.exibirMenu(genreMusica);
+        Genre genero = Genre.values()[generoEscolhido];
 
-        Medias musicas = new Music((String) infoMusica[0], (String) infoMusica[1], (Integer) infoMusica[2], (Integer) infoMusica[3], generoMusic);
+        Medias musica = new Music((String) infoMusica[0], (String) infoMusica[1], (Integer) infoMusica[2], (Integer) infoMusica[3], genero);
 
         try {
-            catalog.addMedia(musicas);
+            catalog.addMedia(musica);
         } catch (ValidTime e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -49,25 +48,5 @@ public class AddMedia {
         } catch (ValidTime e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-    }
-
-    public static void addMediaPlaylist(User user, Catalog catalog) {
-        int playlistId = Utils.exibirMenu(user.getPlaylistNames());
-
-        if(playlistId == -1) {
-           return;
-        }
-
-        int mediaId = Utils.exibirMenu(catalog.getMediaTitles());
-
-        List<Medias> medias = catalog.getMediaList();
-
-        for(Medias m : medias) {
-            if(m.getTitle().equals(medias.get(mediaId).getTitle())) {
-                user.addMedia(playlistId, m);
-            }
-        }
-
-        JOptionPane.showMessageDialog(null, "O media foi adicionada com sucesso!");
     }
 }

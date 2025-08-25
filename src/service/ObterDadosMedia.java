@@ -3,7 +3,6 @@ package service;
 import javax.swing.*;
 
 public class ObterDadosMedia {
-
     public static Object[] obterDadosMedia (){
         String titulo = JOptionPane.showInputDialog(null, "Insira o titulo: ");
         String artista = JOptionPane.showInputDialog(null, "Insira o artista: ");

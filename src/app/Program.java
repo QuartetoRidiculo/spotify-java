@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Program {
 
-    public static void main(String[] args) throws ValidTime {
+    public static void main(String[] args) {
         List<String> mainMenu = new ArrayList<>(List.of(
                 "Gerenciar Playlists",
                 "Catálogo de Mídias",
@@ -102,24 +102,12 @@ public class Program {
             login = true;
 
             Medias music = new Music("Rap do Minecraft", "Tauz", 3, 10, Genre.RAP);
-
-            try {
-                catalog.addMedia(music);
-            } catch (ValidTime e) {
-                System.out.println(e.getMessage());
-            }
-
             Medias audiobook = new Audiobook("O Hobbit", "J. R. R Tolkien", 180, 30, Genre.FANTASY);
-
-            try {
-                catalog.addMedia(audiobook);
-            } catch (ValidTime e) {
-                System.out.println(e.getMessage());
-            }
-
             Medias podcast = new Podcast("Entrevistando Sophio", "Flow Podcast", 120, 30);
 
             try {
+                catalog.addMedia(music);
+                catalog.addMedia(audiobook);
                 catalog.addMedia(podcast);
             } catch (ValidTime e) {
                 System.out.println(e.getMessage());
@@ -148,22 +136,22 @@ public class Program {
 
                     switch (playlistChoice) {
                         case 0:
-                            CreatePlaylist.createPlaylist(user);
+                            PlaylistService.createPlaylist(user);
                             break;
                         case 1:
-                            ListPlaylist.listPlaylist(user);
+                            PlaylistService.listPlaylists(user);
                             break;
                         case 2:
-                            AddMedia.addMediaPlaylist(user, catalog);
+                            PlaylistService.addMediaPlaylist(user, catalog);
                             break;
                         case 3:
                             // Remover mídia da playlist
                             break;
                         case 4:
-                            ViewPlaylist.viewPlaylist(user);
+                            PlaylistService.viewPlaylistInformation(user);
                             break;
                         case 5:
-                            RemovePlaylist.removePlaylist(user);
+                            PlaylistService.removePlaylist(user);
                             break;
                         default:
                             break;
