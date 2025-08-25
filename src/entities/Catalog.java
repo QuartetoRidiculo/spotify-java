@@ -1,6 +1,8 @@
 package entities;
 
+import enums.Genre;
 import exceptions.ValidTime;
+import utils.Utils;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -18,9 +20,7 @@ public class Catalog {
 
         //SE não tiver mídias.
         if (mediaList.isEmpty()) {
-
             return "No media.";
-
         }
 
         //StringBuilder para incrementar nos textos do catálogo
@@ -97,6 +97,52 @@ public class Catalog {
         if (!achou) JOptionPane.showMessageDialog(null, "Nenhuma mídia encontrada com esse título.");
     }
 
+    // Buscar por artista
+    public void buscarPorArtista(String artista) {
+        boolean achou = false;
+        for (Medias m : mediaList) {
+            if (m.getArtist().trim().substring(0, 1).toLowerCase().contains(artista.toLowerCase().substring(0, 1)) ||
+                    m.getArtist().trim().equalsIgnoreCase(artista)) {
+                JOptionPane.showMessageDialog(null, m);
+                achou = true;
+            }
+        }
+        if (!achou) JOptionPane.showMessageDialog(null, "Nenhuma mídia encontrada para esse artista.");
+    }
+
+    // Buscar por gênero
+    public void BuscarPorGenero(List<String> genreAudiobook, List<String> genreMusica) {
+        ArrayList<String> Midias = new ArrayList<>(List.of("Musicas", "AudioBook"));
+
+        int MidiaEscolhida = Utils.exibirMenu(Midias);
+        int GeneroEscolhido;
+        Genre genero = null;
+
+        if (MidiaEscolhida == 0) {
+            GeneroEscolhido = Utils.exibirMenu(genreMusica);
+            genero = Genre.values()[GeneroEscolhido];
+        } else if (MidiaEscolhida == 1) {
+            GeneroEscolhido = Utils.exibirMenu(genreAudiobook);
+            genero = Genre.values()[GeneroEscolhido + 6];
+        }
+      
+        ArrayList<String> MidiaFiltrada = new ArrayList<>();
+
+        for (Medias midia : mediaList) {
+            if (midia.getGenre() == genero) {
+                MidiaFiltrada.add(midia.getTitle());
+            }
+        }
+      
+        String resultado = String.join("/n",MidiaFiltrada);
+      
+        if (MidiaFiltrada.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "nelhuma midia encontrada"+ resultado);
+        } else {
+            JOptionPane.showMessageDialog(null, resultado);
+        }
+    }
+      
     public ArrayList<String> getMediaTitles() {
         ArrayList<String> titles = new ArrayList<>();
         for (Medias m : mediaList) {
@@ -112,3 +158,8 @@ public class Catalog {
         return mediaList;
     }
 }
+
+
+
+
+

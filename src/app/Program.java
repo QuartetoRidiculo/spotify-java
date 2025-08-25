@@ -185,29 +185,28 @@ public class Program {
                                     default:
                                         break;
                                 }
-                                break;
-                            case 1:
-                                ListMedia.listMedia(catalog);
-                                break;
-                            case 2:
-                                break;
-                            case 3:
-                                break;
-                            case 4:
-                                break;
-                            case 5:
-                                String titulo = JOptionPane.showInputDialog(null, "Digite o titulo para realizar a buscar ");
-                                catalog.buscarPorTitulo(titulo);
-                                break;
-                            case 6:
-                                String artista = JOptionPane.showInputDialog(null, "Digite o nome do ártista para realizar a buscar ");
-                                break;
-                            case 7:
-                                String genero = JOptionPane.showInputDialog(null, "Digite o gênero para realizar a buscar ");
-                                break;
-                            default:
-                                break;
-                        }
+                            break;
+                        case 1:
+                            ListMedia.listMedia(catalog);
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                        case 4:
+                            break;
+                        case 5:
+                            String titulo = JOptionPane.showInputDialog(null, "Digite o titulo para realizar a buscar ");
+                            catalog.buscarPorTitulo(titulo);
+                            break;
+                        case 6:
+                            String artista = JOptionPane.showInputDialog(null, "Digite o nome do ártista para realizar a buscar ");
+                            catalog.buscarPorArtista(artista);
+                            break;
+                        case 7:
+                            catalog.BuscarPorGenero(genreAudiobook,genreMusica);
+                        default:
+                            break;
                     }
                     break;
                 default:
