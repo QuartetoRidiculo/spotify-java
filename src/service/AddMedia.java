@@ -24,10 +24,10 @@ public class AddMedia {
         }
     }
 
-    public static void createMusic(List<String> genreMusica, Catalog catalog) {
+    public static void createMusic(List<String> genreMusic, Catalog catalog) {
         Object[] infoMusica = ObterDadosMedia.obterDadosMedia();
 
-        int generoEscolhido = Utils.exibirMenu(genreMusica);
+        int generoEscolhido = Utils.exibirMenu(genreMusic);
         Genre genero = Genre.values()[generoEscolhido];
 
         Medias musica = new Music((String) infoMusica[0], (String) infoMusica[1], (Integer) infoMusica[2], (Integer) infoMusica[3], genero);

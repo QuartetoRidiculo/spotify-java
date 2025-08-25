@@ -100,7 +100,9 @@ public class Catalog {
     public ArrayList<String> getMediaTitles() {
         ArrayList<String> titles = new ArrayList<>();
         for (Medias m : mediaList) {
-            titles.add(m.getTitle());
+            if (m instanceof Podcast || m instanceof Music) {
+                titles.add(m.getTitle());
+            }
         }
 
         return titles;
