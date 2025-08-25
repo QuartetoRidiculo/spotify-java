@@ -3,13 +3,10 @@ package utils;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.List;
-import java.util.Scanner;
 
 import javax.swing.*;
 
 public class Utils {
-    public static Scanner scanner;
-
     public static int exibirMenu(List<String> opcoesMenu) {
         String[] opcoesArray = opcoesMenu.toArray(new String[0]);
 
