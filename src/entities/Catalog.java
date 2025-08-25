@@ -20,9 +20,7 @@ public class Catalog {
 
         //SE não tiver mídias.
         if (mediaList.isEmpty()) {
-
             return "No media.";
-
         }
 
         //StringBuilder para incrementar nos textos do catálogo
@@ -127,6 +125,7 @@ public class Catalog {
             GeneroEscolhido = Utils.exibirMenu(genreAudiobook);
             genero = Genre.values()[GeneroEscolhido + 6];
         }
+      
         ArrayList<String> MidiaFiltrada = new ArrayList<>();
 
         for (Medias midia : mediaList) {
@@ -134,12 +133,29 @@ public class Catalog {
                 MidiaFiltrada.add(midia.getTitle());
             }
         }
+      
         String resultado = String.join("/n",MidiaFiltrada);
+      
         if (MidiaFiltrada.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "nelhuma midia encontrada"+ resultado);
         } else {
             JOptionPane.showMessageDialog(null, resultado);
         }
+    }
+      
+    public ArrayList<String> getMediaTitles() {
+        ArrayList<String> titles = new ArrayList<>();
+        for (Medias m : mediaList) {
+            if (m instanceof Podcast || m instanceof Music) {
+                titles.add(m.getTitle());
+            }
+        }
+
+        return titles;
+    }
+
+    public List<Medias> getMediaList() {
+        return mediaList;
     }
 }
 
