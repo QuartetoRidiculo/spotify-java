@@ -89,7 +89,7 @@ public class Program {
                     continue;
                 }
 
-                if (!email.isBlank() && email.contains("@")) {
+                if (!email.isBlank() && email.contains("@") && email.contains("mail")) {
                     break;
                 }
             }
@@ -174,6 +174,7 @@ public class Program {
                                     default:
                                         break;
                                 }
+<<<<<<< HEAD
                                 break;
                             case 1:
                                 ListMedia.listMedia(catalog);
@@ -201,6 +202,33 @@ public class Program {
                             default:
                                 break;
                         }
+=======
+                            break;
+                        case 1:
+                            ListMedia.listMedia(catalog);
+                            break;
+                        case 2:
+                            ListMedia.listAudiobook(catalog);
+                            break;
+                        case 3:
+                            ListMedia.listMusic(catalog);
+                            break;
+                        case 4:
+                            ListMedia.listPodcast(catalog);
+                            break;
+                        case 5:
+                            String titulo = JOptionPane.showInputDialog(null, "Digite o titulo para realizar a buscar ");
+                            catalog.buscarPorTitulo(titulo);
+                            break;
+                        case 6:
+                            String artista = JOptionPane.showInputDialog(null, "Digite o nome do ártista para realizar a buscar ");
+                            break;
+                        case 7:
+                            String genero = JOptionPane.showInputDialog(null, "Digite o gênero para realizar a buscar ");
+                            break;
+                        default:
+                            break;
+>>>>>>> gustavo
                     }
                     break;
 

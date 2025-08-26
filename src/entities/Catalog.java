@@ -24,9 +24,30 @@ public class Catalog {
         }
 
         //StringBuilder para incrementar nos textos do catálogo
-        StringBuilder sbMusic = new StringBuilder();
+        StringBuilder sbMedia = new StringBuilder();
 
-        sbMusic.append("Musics:\n");
+        sbMedia.append("Musics:\n");
+
+        //Listando músicas
+        sbMedia.append(listMusic());
+
+        sbMedia.append("Audiobooks:\n");
+
+        //Listando audiobooks
+        sbMedia.append(listAudiobook());
+
+        sbMedia.append("Podcasts:\n");
+
+        //Listando podcasts
+        sbMedia.append(listPodcast());
+
+        return sbMedia.toString();
+    }
+
+    //Método para listar músicas
+    public String listMusic(){
+
+    StringBuilder sbMusic = new StringBuilder();
 
         for (Medias i : mediaList) {
 
@@ -34,35 +55,55 @@ public class Catalog {
             if (i instanceof Music) {
                 sbMusic.append(i).append("\n\n");
             }
-
         }
 
-        sbMusic.append("Audiobooks:\n");
+        return sbMusic.toString();
+
+    }
+
+    //Método para listar audiobooks
+    public String listAudiobook(){
+
+    StringBuilder sbAudiobook = new StringBuilder();
 
         for (Medias i : mediaList) {
 
             //SE a midia listada for instância de audiobook, ela será adicionada ao StringBuilder
+<<<<<<< HEAD
             if (i instanceof Audiobook) {
                 sbMusic.append(i).append("\n\n");
+=======
+            if(i instanceof Audiobook){
+                sbAudiobook.append(i).append("\n\n");
+>>>>>>> gustavo
             }
 
         }
 
-        sbMusic.append("Podcasts:\n");
+        return sbAudiobook.toString();
+
+    }
+
+    //Método para listar podcast
+    public String listPodcast(){
+
+    StringBuilder sbPodcast = new StringBuilder();
 
         for (Medias i : mediaList) {
 
             //SE a midia listada for instância de podcast, ela será adicionada ao StringBuilder
             if (i instanceof Podcast) {
 
-                sbMusic.append(i).append("\n\n");
+                sbPodcast.append(i).append("\n\n");
 
             }
 
         }
 
-        return sbMusic.toString();
+        return sbPodcast.toString();
+
     }
+
 
     //Método para adicionar mídia
     public void addMedia(Medias media) throws ValidTime {
