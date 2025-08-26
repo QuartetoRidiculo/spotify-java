@@ -89,7 +89,7 @@ public class Program {
                     continue;
                 }
 
-                if (!email.isBlank() && email.contains("@")) {
+                if (!email.isBlank() && email.contains("@") && email.contains("mail")) {
                     break;
                 }
             }
