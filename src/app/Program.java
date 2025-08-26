@@ -11,15 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Program {
-
-    public static void main(String[] args) throws ValidTime {
-        // Menu principal
+    public static void main(String[] args) {
         List<String> mainMenu = new ArrayList<>(List.of(
                 "Gerenciar Playlists",
                 "Catálogo de Mídias",
                 "Sair"));
 
-        // Gerenciar Playlists
         List<String> playlistMenu = new ArrayList<>(List.of(
                 "Criar playlist",
                 "Listar playlists",
@@ -28,7 +25,6 @@ public class Program {
                 "Visualizar detalhes da playlist",
                 "Excluir playlist"));
 
-        // Catálogo de Mídias
         List<String> catalogMenu = new ArrayList<>(List.of(
                 "Cadastrar nova mídia",
                 "Listar todas as mídias do catálogo",
@@ -50,7 +46,7 @@ public class Program {
                 "ROMANCE",
                 "RELIGIOUS"));
 
-        List<String> genreMusica = new ArrayList<>(List.of(
+        List<String> genreMusic = new ArrayList<>(List.of(
                 "ROCK",
                 "POP",
                 "JAZZ",
@@ -61,16 +57,15 @@ public class Program {
         Catalog catalog = new Catalog();
         User user = null;
 
-        Boolean login = false;
+        boolean login = false;
 
         do {
             String name;
-            while (true){
+            while (true) {
                 name = JOptionPane.showInputDialog("nome do usuário:");
 
                 if (name == null) {
                     int exit = JOptionPane.showConfirmDialog(null, "Deseja encerrar o programa?");
-
                     if (exit == JOptionPane.YES_OPTION) {
                         System.exit(0);
                     }
@@ -88,7 +83,6 @@ public class Program {
 
                 if (email == null) {
                     int exit = JOptionPane.showConfirmDialog(null, "Deseja encerrar o programa?");
-
                     if (exit == JOptionPane.YES_OPTION) {
                         System.exit(0);
                     }
@@ -101,139 +95,115 @@ public class Program {
             }
 
             user = new User(name, email);
-
             login = true;
 
             Medias music = new Music("Rap do Minecraft", "Tauz", 3, 10, Genre.RAP);
-
-            try {
-                catalog.addMedia(music);
-            } catch (ValidTime e) {
-                System.out.println(e.getMessage());
-            }
-
             Medias audiobook = new Audiobook("O Hobbit", "J. R. R Tolkien", 180, 30, Genre.FANTASY);
-
-            try {
-                catalog.addMedia(audiobook);
-            } catch (ValidTime e) {
-                System.out.println(e.getMessage());
-            }
-
             Medias podcast = new Podcast("Entrevistando Sophio", "Flow Podcast", 120, 30);
 
             try {
+                catalog.addMedia(music);
+                catalog.addMedia(audiobook);
                 catalog.addMedia(podcast);
             } catch (ValidTime e) {
                 System.out.println(e.getMessage());
             }
         } while (!login);
 
-        while (true) {
+        while (login) {
             int choice = Utils.exibirMenu(mainMenu);
 
-            if (choice == -1 || choice == 4) {
-                break;
+            if (choice == -1 || choice == 2) {
+                int exit = JOptionPane.showConfirmDialog(null, "Deseja encerrar o programa?");
+                if (exit == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
             }
 
             switch (choice) {
+                case 0: // Gerenciar playlists
+                    while (true) {
+                        int playlistChoice = Utils.exibirMenu(playlistMenu);
+                        if (playlistChoice == -1) break;
 
-                case 0:
-
-                    int playlistChoice = Utils.exibirMenu(playlistMenu);
-
-                    if (playlistChoice == -1)
-                        continue;
-
-                    switch (playlistChoice) {
-                        case 0:
-                            CreatePlaylist.createPlaylist(user);
-                            break;
-                        case 1:
-                            // listar playlist
-                            break;
-                        case 2:
-                            // Adicionar mídia à playlist
-                            break;
-                        case 3:
-                            // Remover mídia da playlist
-                            break;
-                        case 4:
-                            ViewPlaylist.viewPlaylist(user);
-                            break;
-                        case 5:
-                            RemovePlaylist.removePlaylist(user);
-                            break;
-                        default:
-                            break;
+                        switch (playlistChoice) {
+                            case 0:
+                                PlaylistService.createPlaylist(user);
+                                break;
+                            case 1:
+                                PlaylistService.listPlaylists(user);
+                                break;
+                            case 2:
+                                PlaylistService.addMediaPlaylist(user, catalog);
+                                break;
+                            case 3:
+                                // Remover mídia da playlist (a implementar)
+                                break;
+                            case 4:
+                                PlaylistService.viewPlaylistInformation(user);
+                                break;
+                            case 5:
+                                PlaylistService.removePlaylist(user);
+                                break;
+                            default:
+                                break;
+                        }
                     }
                     break;
 
-                case 1:
+                case 1: // Catálogo de mídias
+                    while (true) {
+                        int catalogChoice = Utils.exibirMenu(catalogMenu);
+                        if (catalogChoice == -1) break;
 
-                    int cataloChoice = Utils.exibirMenu(catalogMenu);
+                        switch (catalogChoice) {
+                            case 0:
+                                int escolhaMidia = Utils.exibirMenu(choiceMedia);
+                                if (escolhaMidia == -1) break;
 
-                    if (cataloChoice == -1)
-                        continue;
-
-                    switch (cataloChoice) {
-                        case 0:
-                            // Cadastrar nova mídia (música, podcast, audiobook)
-                            int escolhaMidia  = Utils.exibirMenu(choiceMedia);
-
-                            if (escolhaMidia == -1) {
-                                break;
-                            }
-                                switch (escolhaMidia){
-
+                                switch (escolhaMidia) {
                                     case 0:
-                                        //Add Audiobook
                                         AddMedia.createAudiobook(genreAudiobook, catalog);
                                         break;
                                     case 1:
-                                        //Add musica
-                                        AddMedia.createMusic(genreMusica, catalog);
+                                        AddMedia.createMusic(genreMusic, catalog);
                                         break;
                                     case 2:
-                                        //Add Podcast
                                         AddMedia.createPodcast(catalog);
                                         break;
                                     default:
                                         break;
                                 }
-                            break;
-                        case 1:
-                            ListMedia.listMedia(catalog);
-                            break;
-                        case 2:
-                            ListMedia.listAudiobook(catalog);
-                            break;
-                        case 3:
-                            ListMedia.listMusic(catalog);
-                            break;
-                        case 4:
-                            ListMedia.listPodcast(catalog);
-                            break;
-                        case 5:
-                            String titulo = JOptionPane.showInputDialog(null, "Digite o titulo para realizar a buscar ");
-                            catalog.buscarPorTitulo(titulo);
-                            break;
-                        case 6:
-                            String artista = JOptionPane.showInputDialog(null, "Digite o nome do ártista para realizar a buscar ");
-                            break;
-                        case 7:
-                            String genero = JOptionPane.showInputDialog(null, "Digite o gênero para realizar a buscar ");
-                            break;
-                        default:
-                            break;
+                                break;
+                            case 1:
+                                ListMedia.listMedia(catalog);
+                                break;
+                            case 2:
+                                // Buscar audiobook (implementar)
+                                break;
+                            case 3:
+                                // Buscar música (implementar)
+                                break;
+                            case 4:
+                                // Buscar podcast (implementar)
+                                break;
+                            case 5:
+                                String titulo = JOptionPane.showInputDialog(null, "Digite o título para realizar a busca: ");
+                                catalog.buscarPorTitulo(titulo);
+                                break;
+                            case 6:
+                                String artista = JOptionPane.showInputDialog(null, "Digite o nome do artista para realizar a busca: ");
+                                catalog.buscarPorArtista(artista);
+                                break;
+                            case 7:
+                                catalog.BuscarPorGenero(genreAudiobook, genreMusic);
+                                break;
+                            default:
+                                break;
+                        }
                     }
                     break;
-                case 2:
-                    int exit = JOptionPane.showConfirmDialog(null, "Deseja encerrar o programa?");
 
-                    if (exit == JOptionPane.YES_OPTION) {
-                        System.exit(0);
-                    }
                 default:
                     break;
             }
