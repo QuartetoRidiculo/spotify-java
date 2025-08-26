@@ -57,7 +57,7 @@ public class Program {
         Catalog catalog = new Catalog();
         User user = null;
 
-        Boolean login = false;
+        boolean login = false;
 
         do {
             String name;
@@ -66,7 +66,6 @@ public class Program {
 
                 if (name == null) {
                     int exit = JOptionPane.showConfirmDialog(null, "Deseja encerrar o programa?");
-
                     if (exit == JOptionPane.YES_OPTION) {
                         System.exit(0);
                     }
@@ -84,7 +83,6 @@ public class Program {
 
                 if (email == null) {
                     int exit = JOptionPane.showConfirmDialog(null, "Deseja encerrar o programa?");
-
                     if (exit == JOptionPane.YES_OPTION) {
                         System.exit(0);
                     }
@@ -97,7 +95,6 @@ public class Program {
             }
 
             user = new User(name, email);
-
             login = true;
 
             Medias music = new Music("Rap do Minecraft", "Tauz", 3, 10, Genre.RAP);
@@ -118,20 +115,16 @@ public class Program {
 
             if (choice == -1 || choice == 2) {
                 int exit = JOptionPane.showConfirmDialog(null, "Deseja encerrar o programa?");
-
                 if (exit == JOptionPane.YES_OPTION) {
                     System.exit(0);
                 }
             }
 
             switch (choice) {
-
-                case 0:
+                case 0: // Gerenciar playlists
                     while (true) {
                         int playlistChoice = Utils.exibirMenu(playlistMenu);
-
-                        if (playlistChoice == -1)
-                            break;
+                        if (playlistChoice == -1) break;
 
                         switch (playlistChoice) {
                             case 0:
@@ -144,7 +137,7 @@ public class Program {
                                 PlaylistService.addMediaPlaylist(user, catalog);
                                 break;
                             case 3:
-                                // Remover mídia da playlist
+                                // Remover mídia da playlist (a implementar)
                                 break;
                             case 4:
                                 PlaylistService.viewPlaylistInformation(user);
@@ -157,22 +150,18 @@ public class Program {
                         }
                     }
                     break;
-                case 1:
+
+                case 1: // Catálogo de mídias
                     while (true) {
-                        int cataloChoice = Utils.exibirMenu(catalogMenu);
+                        int catalogChoice = Utils.exibirMenu(catalogMenu);
+                        if (catalogChoice == -1) break;
 
-                        if (cataloChoice == -1)
-                            break;
-
-                        switch (cataloChoice) {
+                        switch (catalogChoice) {
                             case 0:
                                 int escolhaMidia = Utils.exibirMenu(choiceMedia);
+                                if (escolhaMidia == -1) break;
 
-                                if (escolhaMidia == -1) {
-                                    break;
-                                }
                                 switch (escolhaMidia) {
-
                                     case 0:
                                         AddMedia.createAudiobook(genreAudiobook, catalog);
                                         break;
@@ -185,30 +174,36 @@ public class Program {
                                     default:
                                         break;
                                 }
-                            break;
-                        case 1:
-                            ListMedia.listMedia(catalog);
-                            break;
-                        case 2:
-                            break;
-                        case 3:
-                            break;
-                        case 4:
-                            break;
-                        case 5:
-                            String titulo = JOptionPane.showInputDialog(null, "Digite o titulo para realizar a buscar ");
-                            catalog.buscarPorTitulo(titulo);
-                            break;
-                        case 6:
-                            String artista = JOptionPane.showInputDialog(null, "Digite o nome do ártista para realizar a buscar ");
-                            catalog.buscarPorArtista(artista);
-                            break;
-                        case 7:
-                            catalog.BuscarPorGenero(genreAudiobook,genreMusica);
-                        default:
-                            break;
+                                break;
+                            case 1:
+                                ListMedia.listMedia(catalog);
+                                break;
+                            case 2:
+                                // Buscar audiobook (implementar)
+                                break;
+                            case 3:
+                                // Buscar música (implementar)
+                                break;
+                            case 4:
+                                // Buscar podcast (implementar)
+                                break;
+                            case 5:
+                                String titulo = JOptionPane.showInputDialog(null, "Digite o título para realizar a busca: ");
+                                catalog.buscarPorTitulo(titulo);
+                                break;
+                            case 6:
+                                String artista = JOptionPane.showInputDialog(null, "Digite o nome do artista para realizar a busca: ");
+                                catalog.buscarPorArtista(artista);
+                                break;
+                            case 7:
+                                catalog.BuscarPorGenero(genreAudiobook, genreMusic);
+                                break;
+                            default:
+                                break;
+                        }
                     }
                     break;
+
                 default:
                     break;
             }
