@@ -7,7 +7,7 @@ public class Playlist {
 
     protected User user;
     protected String name;
-    private List<Medias> listOfMedias = new ArrayList<>();
+    private List<Medias> mediasList = new ArrayList<>();
 
     public Playlist(){
     }
@@ -31,8 +31,8 @@ public class Playlist {
         this.name = name;
     }
 
-    public List<Medias> getListOfMedias() {
-        return listOfMedias;
+    public List<Medias> getMediasList() {
+        return mediasList;
     }
 
     //Método para calcular o tempo total de mídias em uma playlist
@@ -41,7 +41,7 @@ public class Playlist {
         Integer totalMinutes = 0;
         Integer totalSeconds = 0;
 
-        for(Medias i : listOfMedias){
+        for(Medias i : mediasList){
 
             totalMinutes += i.getMinutes();
             totalSeconds += i.getSeconds();

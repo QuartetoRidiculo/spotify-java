@@ -4,15 +4,16 @@ import entities.*;
 import utils.Utils;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlaylistService {
-    public static void createPlaylist(User user){
+    public static void createPlaylist(User user) {
         String name;
-        while(true){
+        while (true) {
             name = JOptionPane.showInputDialog("Digite o nome do playlist: ");
 
-            if(name == null){
+            if (name == null) {
                 break;
             }
 
@@ -27,7 +28,7 @@ public class PlaylistService {
     }
 
     public static void removePlaylist(User user) {
-        if(user.getPlaylistNames().isEmpty()) {
+        if (user.getPlaylistNames().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Nenhuma playlist foi encontrada.");
             return;
         }
@@ -39,15 +40,20 @@ public class PlaylistService {
     }
 
     public static void addMediaPlaylist(User user, Catalog catalog) {
+        if (user.getPlaylistNames().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nenhuma playlist foi encontrada.");
+            return;
+        }
+
         int playlistId = Utils.exibirMenu(user.getPlaylistNames());
 
-        if (playlistId == -1) {
+        if (playlistId == -1 || playlistId == -2) {
             return;
         }
 
         int mediaId = Utils.exibirMenu(catalog.getMediaTitles());
 
-        if (mediaId == -1) {
+        if (mediaId == -1 || mediaId == -2) {
             return;
         }
 
@@ -64,33 +70,65 @@ public class PlaylistService {
         JOptionPane.showMessageDialog(null, "A media foi adicionada com sucesso!");
     }
 
-    public static void viewPlaylistInformation(User user) {
+    public static void removeMediaPlaylist(User user) {
         if (user.getPlaylistNames().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Nenhum playlist foi encontrada!") ;
+            JOptionPane.showMessageDialog(null, "Nenhuma playlist foi encontrada.");
             return;
         }
 
+        int playlistId = Utils.exibirMenu(user.getPlaylistNames());
+
+        if (playlistId == -1) {
+            return;
+        }
+
+        List<String> medias = new ArrayList<>();
+
+        for (Medias m : user.getPlaylistMedias(playlistId)) {
+            medias.add(m.getTitle());
+        }
+
+        int mediaId = Utils.exibirMenu(medias);
+
+        if (mediaId == -1) {
+            return;
+        }
+
+        user.removeMediaFromPlaylist(playlistId, mediaId);
+
+        JOptionPane.showMessageDialog(null, "A media foi removida com sucesso!");
+    }
+
+    public static void viewPlaylistInformation(User user) {
+        if (user.getPlaylistNames().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nenhum playlist foi encontrada!");
+            return;
+        }
 
         int playlistId = Utils.exibirMenu(user.getPlaylistNames());
 
-        if(playlistId == -1){
+        if (playlistId == -1 || playlistId == -2) {
             return;
         }
 
         JOptionPane.showMessageDialog(null, user.getPlaylistInfo(playlistId));
     }
 
-    public static void listPlaylists(User user){
-        if(user.getPlaylistNames().isEmpty()) {
+    public static void listPlaylists(User user) {
+        if (user.getPlaylistNames().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Nenhuma playlist foi encontrada.");
             return;
         }
 
         int playlistChoice = Utils.exibirMenu(user.getPlaylistNames());
 
-        for(int c = 0; c < user.getPlaylistNames().size(); c++){
-            if (playlistChoice == c){
-                JOptionPane.showMessageDialog(null, user.getPlaylistMedias(c));
+        if (playlistChoice == -1 || playlistChoice == -2) {
+            return;
+        }
+
+        for (int c = 0; c < user.getPlaylistNames().size(); c++) {
+            if (playlistChoice == c) {
+              user.getFormattedPlaylistMedias(c);
             }
         }
     }

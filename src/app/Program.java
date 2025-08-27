@@ -137,7 +137,8 @@ public class Program {
                                 PlaylistService.addMediaPlaylist(user, catalog);
                                 break;
                             case 3:
-                                // Remover mídia da playlist (a implementar)
+                                PlaylistService.removeMediaPlaylist(user
+                                );
                                 break;
                             case 4:
                                 PlaylistService.viewPlaylistInformation(user);

@@ -1,6 +1,8 @@
 package entities;
 
-import javax.print.attribute.standard.Media;
+import utils.Utils;
+
+import javax.swing.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -35,12 +37,12 @@ public class User extends Playlist {
 
     // Adiciona mídia a uma playlist específica
     public void addMediaToPlaylist(int playlistID, Medias media) {
-        playlists.get(playlistID).getListOfMedias().add(media);
+        playlists.get(playlistID).getMediasList().add(media);
     }
 
     // Remove mídia de uma playlist específica
     public void removeMediaFromPlaylist(int playlistID, int mediaID) {
-        playlists.get(playlistID).getListOfMedias().remove(mediaID);
+        playlists.get(playlistID).getMediasList().remove(mediaID);
     }
 
     // Método para mostrar informações gerais da playlist
@@ -55,19 +57,32 @@ public class User extends Playlist {
         return sb.toString();
     }
 
-    // Método para listar somente as mídias da playlist
-    public String getPlaylistMedias(int playlistID) {
+    public void getFormattedPlaylistMedias(int playlistID) {
         Playlist playlist = playlists.get(playlistID);
-        StringBuilder sb = new StringBuilder();
 
-        sb.append("Mídias da playlist '").append(playlist.getName()).append("':\n");
-
-        int index = 0;
-        for (Medias media : playlist.getListOfMedias()) {
-            sb.append(index++).append(" - ").append(media).append("\n");
+        if (playlist.getMediasList().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Esta playlist não possui nenhuma mídia.");
+            return;
         }
 
-        return sb.toString();
+        List<String> mediaMenu = new ArrayList<>();
+        for (Medias media : playlist.getMediasList()) {
+            mediaMenu.add(media.getTitle());
+        }
+
+        int choiceMedia = Utils.exibirMenu(mediaMenu);
+
+        if (choiceMedia == -1 || choiceMedia == -2) {
+            return;
+        }
+
+        JOptionPane.showMessageDialog(null, playlist.getMediasList().get(choiceMedia));
+    }
+
+    public List<Medias> getPlaylistMedias(int playlistID) {
+        Playlist playlist = playlists.get(playlistID);
+
+        return playlist.getMediasList();
     }
 
     public List<String> getPlaylistNames() {
