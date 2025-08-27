@@ -120,12 +120,17 @@ public class Catalog {
         mediaList.remove(media);
 
     }
-
+// buscar por titulo
     public void buscarPorTitulo(String titulo) {
+        if (titulo == null || titulo.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Título inválido!");
+            return;
+        }
+        String busca = titulo.trim().toLowerCase();
         boolean achou = false;
         for (Medias m : mediaList) {
-            if (m.getTitle().trim().substring(0, 1).toLowerCase().contains(titulo.toLowerCase().substring(0, 1)) ||
-                    m.getTitle().trim().equalsIgnoreCase(titulo)) {
+            if (m.getTitle().trim().substring(0, 1).contains(busca.substring(0, 1)) ||
+                    m.getTitle().trim().equalsIgnoreCase(busca)) {
                 JOptionPane.showMessageDialog(null, m);
                 achou = true;
             }
@@ -135,10 +140,15 @@ public class Catalog {
 
     // Buscar por artista
     public void buscarPorArtista(String artista) {
+        if (artista == null || artista.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Artista inválido!");
+            return;
+        }
         boolean achou = false;
+        String busca = artista.trim().toLowerCase();
         for (Medias m : mediaList) {
-            if (m.getArtist().trim().substring(0, 1).toLowerCase().contains(artista.toLowerCase().substring(0, 1)) ||
-                    m.getArtist().trim().equalsIgnoreCase(artista)) {
+            if (m.getArtist().trim().substring(0, 1).contains(busca.substring(0, 1)) ||
+                    m.getArtist().trim().equalsIgnoreCase(busca)) {
                 JOptionPane.showMessageDialog(null, m);
                 achou = true;
             }
@@ -148,7 +158,14 @@ public class Catalog {
 
     // Buscar por gênero
     public void BuscarPorGenero(List<String> genreAudiobook, List<String> genreMusica) {
+        // Valida listas de gêneros
+        if ((genreAudiobook == null || genreAudiobook.isEmpty()) &&
+                (genreMusica == null || genreMusica.isEmpty())) {
+            JOptionPane.showMessageDialog(null, "Nenhum gênero disponível para pesquisa!");
+            return;
+        }
         ArrayList<String> Midias = new ArrayList<>(List.of("Musicas", "AudioBook"));
+
 
         int MidiaEscolhida = Utils.exibirMenu(Midias, "Escolha o Tipo de Mídia");
         int GeneroEscolhido;
