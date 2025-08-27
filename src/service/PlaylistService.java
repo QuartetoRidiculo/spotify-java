@@ -32,7 +32,7 @@ public class PlaylistService {
             JOptionPane.showMessageDialog(null, "Nenhuma playlist foi encontrada.");
             return;
         }
-        int playlistChoice = Utils.exibirMenu(user.getPlaylistNames());
+        int playlistChoice = Utils.exibirMenu(user.getPlaylistNames(), "Selecionar Playlist");
 
         user.deletePlaylist(playlistChoice);
 
@@ -45,13 +45,13 @@ public class PlaylistService {
             return;
         }
 
-        int playlistId = Utils.exibirMenu(user.getPlaylistNames());
+        int playlistId = Utils.exibirMenu(user.getPlaylistNames(), "Selecionar Playlist");
 
         if (playlistId == -1 || playlistId == -2) {
             return;
         }
 
-        int mediaId = Utils.exibirMenu(catalog.getMediaTitles());
+        int mediaId = Utils.exibirMenu(catalog.getMediaTitles(), "Selecionar Mídia");
 
         if (mediaId == -1 || mediaId == -2) {
             return;
@@ -76,7 +76,7 @@ public class PlaylistService {
             return;
         }
 
-        int playlistId = Utils.exibirMenu(user.getPlaylistNames());
+        int playlistId = Utils.exibirMenu(user.getPlaylistNames(), "Selecionar Playlist");
 
         if (playlistId == -1) {
             return;
@@ -88,7 +88,7 @@ public class PlaylistService {
             medias.add(m.getTitle());
         }
 
-        int mediaId = Utils.exibirMenu(medias);
+        int mediaId = Utils.exibirMenu(medias, "Selecionar Mídia");
 
         if (mediaId == -1) {
             return;
@@ -105,7 +105,7 @@ public class PlaylistService {
             return;
         }
 
-        int playlistId = Utils.exibirMenu(user.getPlaylistNames());
+        int playlistId = Utils.exibirMenu(user.getPlaylistNames(),  "Selecionar Playlist");
 
         if (playlistId == -1 || playlistId == -2) {
             return;
@@ -120,7 +120,7 @@ public class PlaylistService {
             return;
         }
 
-        int playlistChoice = Utils.exibirMenu(user.getPlaylistNames());
+        int playlistChoice = Utils.exibirMenu(user.getPlaylistNames(),  "Selecionar Playlist");
 
         if (playlistChoice == -1 || playlistChoice == -2) {
             return;

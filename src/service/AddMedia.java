@@ -13,7 +13,7 @@ public class AddMedia {
     public static void createAudiobook(List<String> genreAudiobook, Catalog catalog) {
         Object[] infoAudiobook = ObterDadosMedia.obterDadosMedia();
 
-        int generoEscolhido = Utils.exibirMenu(genreAudiobook);
+        int generoEscolhido = Utils.exibirMenu(genreAudiobook, "Selecionar Gênero de Audiobook");
         Genre genero = Genre.values()[generoEscolhido + 6];
 
         Medias audiobook = new Audiobook((String) infoAudiobook[0], (String) infoAudiobook[1], (Integer) infoAudiobook[2], (Integer) infoAudiobook[3], genero);
@@ -27,7 +27,7 @@ public class AddMedia {
     public static void createMusic(List<String> genreMusic, Catalog catalog) {
         Object[] infoMusica = ObterDadosMedia.obterDadosMedia();
 
-        int generoEscolhido = Utils.exibirMenu(genreMusic);
+        int generoEscolhido = Utils.exibirMenu(genreMusic, "Selecionar Gênero de Música");
         Genre genero = Genre.values()[generoEscolhido];
 
         Medias musica = new Music((String) infoMusica[0], (String) infoMusica[1], (Integer) infoMusica[2], (Integer) infoMusica[3], genero);

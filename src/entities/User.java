@@ -70,7 +70,7 @@ public class User extends Playlist {
             mediaMenu.add(media.getTitle());
         }
 
-        int choiceMedia = Utils.exibirMenu(mediaMenu);
+        int choiceMedia = Utils.exibirMenu(mediaMenu,"Selecionar Mídia");
 
         if (choiceMedia == -1 || choiceMedia == -2) {
             return;
