@@ -47,7 +47,7 @@ public class Catalog {
     //Método para listar músicas
     public String listMusic(){
 
-    StringBuilder sbMusic = new StringBuilder();
+        StringBuilder sbMusic = new StringBuilder();
 
         for (Medias i : mediaList) {
 
@@ -64,7 +64,7 @@ public class Catalog {
     //Método para listar audiobooks
     public String listAudiobook(){
 
-    StringBuilder sbAudiobook = new StringBuilder();
+        StringBuilder sbAudiobook = new StringBuilder();
 
         for (Medias i : mediaList) {
 
@@ -82,7 +82,7 @@ public class Catalog {
     //Método para listar podcast
     public String listPodcast(){
 
-    StringBuilder sbPodcast = new StringBuilder();
+        StringBuilder sbPodcast = new StringBuilder();
 
         for (Medias i : mediaList) {
 
@@ -161,7 +161,7 @@ public class Catalog {
             GeneroEscolhido = Utils.exibirMenu(genreAudiobook);
             genero = Genre.values()[GeneroEscolhido + 6];
         }
-      
+
         ArrayList<String> MidiaFiltrada = new ArrayList<>();
 
         for (Medias midia : mediaList) {
@@ -169,16 +169,16 @@ public class Catalog {
                 MidiaFiltrada.add(midia.getTitle());
             }
         }
-      
+
         String resultado = String.join("/n",MidiaFiltrada);
-      
+
         if (MidiaFiltrada.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "nelhuma midia encontrada"+ resultado);
+            JOptionPane.showMessageDialog(null, "nelhuma midia encontrada"+ resultado);
         } else {
             JOptionPane.showMessageDialog(null, resultado);
         }
     }
-      
+
     public ArrayList<String> getMediaTitles() {
         ArrayList<String> titles = new ArrayList<>();
         for (Medias m : mediaList) {
