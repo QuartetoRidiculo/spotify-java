@@ -2,8 +2,6 @@ package entities;
 
 import enums.Genre;
 
-import java.util.List;
-
 public abstract class Medias{
 
     protected String title;
