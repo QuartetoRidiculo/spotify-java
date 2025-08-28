@@ -189,11 +189,11 @@ public class Program {
                                 // Buscar podcast (implementar)
                                 break;
                             case 5:
-                                String titulo = JOptionPane.showInputDialog(null, "Digite o título para realizar a busca: ");
+                                String titulo = JOptionPane.showInputDialog(null, "Digite o título: ");
                                 catalog.buscarPorTitulo(titulo);
                                 break;
                             case 6:
-                                String artista = JOptionPane.showInputDialog(null, "Digite o nome do artista para realizar a busca: ");
+                                String artista = JOptionPane.showInputDialog(null, "Digite o nome do artista: ");
                                 catalog.buscarPorArtista(artista);
                                 break;
                             case 7:
