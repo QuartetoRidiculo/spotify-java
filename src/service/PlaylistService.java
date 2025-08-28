@@ -60,14 +60,20 @@ public class PlaylistService {
         List<Medias> medias = catalog.getMediaList();
 
         for (Medias m : medias) {
-            if (m.getTitle().equals(medias.get(mediaId).getTitle())) {
-                if (m instanceof Podcast || m instanceof Music) {
-                    user.addMediaToPlaylist(playlistId, m);
+
+            if (catalog.getMediaList().get(mediaId).getTitle().equals(m.getTitle())){
+
+                if(user.getPlaylistMedias(playlistId).contains(m.getTitle())){
+                    JOptionPane.showMessageDialog(null,"Media já na playlist.");
+                    return;
                 }
+
+                    user.addMediaToPlaylist(playlistId, m);
+                    JOptionPane.showMessageDialog(null, "A media foi adicionada com sucesso!");
+                    return;
             }
         }
 
-        JOptionPane.showMessageDialog(null, "A media foi adicionada com sucesso!");
     }
 
     public static void removeMediaPlaylist(User user) {

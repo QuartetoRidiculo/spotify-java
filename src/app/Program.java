@@ -89,7 +89,7 @@ public class Program {
                     continue;
                 }
 
-                if (!email.isBlank() && email.contains("@") && email.contains("mail")) {
+                if (!email.isBlank() && email.contains("@") && email.contains(".")) {
                     break;
                 }
             }
@@ -180,12 +180,15 @@ public class Program {
                                 ListMedia.listMedia(catalog);
                                 break;
                             case 2:
+                                ListMedia.listAudiobook(catalog);
                                 // Buscar audiobook (implementar)
                                 break;
                             case 3:
+                                ListMedia.listMusic(catalog);
                                 // Buscar música (implementar)
                                 break;
                             case 4:
+                                ListMedia.listPodcast(catalog);
                                 // Buscar podcast (implementar)
                                 break;
                             case 5:

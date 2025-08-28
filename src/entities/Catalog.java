@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Catalog {
 
-    private List<Medias> mediaList = new ArrayList<>();
+    protected List<Medias> mediaList = new ArrayList<>();
 
     public Catalog() {
     }
@@ -182,9 +182,7 @@ public class Catalog {
     public ArrayList<String> getMediaTitles() {
         ArrayList<String> titles = new ArrayList<>();
         for (Medias m : mediaList) {
-            if (m instanceof Podcast || m instanceof Music) {
                 titles.add(m.getTitle());
-            }
         }
 
         return titles;
