@@ -141,15 +141,15 @@ public class Catalog {
     public void BuscarPorGenero(List<String> genreAudiobook, List<String> genreMusica) {
         ArrayList<String> Midias = new ArrayList<>(List.of("Musicas", "AudioBook"));
 
-        int MidiaEscolhida = Utils.exibirMenu(Midias);
+        int MidiaEscolhida = Utils.exibirMenu(Midias, "Escolha o Tipo de Mídia");
         int GeneroEscolhido;
         Genre genero = null;
 
         if (MidiaEscolhida == 0) {
-            GeneroEscolhido = Utils.exibirMenu(genreMusica);
+            GeneroEscolhido = Utils.exibirMenu(genreMusica, "Selecionar Gênero de Música");
             genero = Genre.values()[GeneroEscolhido];
         } else if (MidiaEscolhida == 1) {
-            GeneroEscolhido = Utils.exibirMenu(genreAudiobook);
+            GeneroEscolhido = Utils.exibirMenu(genreAudiobook, "Selecionar Gênero de Audiobook");
             genero = Genre.values()[GeneroEscolhido + 6];
         }
 

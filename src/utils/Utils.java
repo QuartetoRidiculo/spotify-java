@@ -7,7 +7,7 @@ import java.util.List;
 import javax.swing.*;
 
 public class Utils {
-    public static int exibirMenu(List<String> opcoesMenu) {
+    public static int exibirMenu(List<String> opcoesMenu, String title) {
         String[] opcoesArray = opcoesMenu.toArray(new String[0]);
 
         JList<String> listaOpcoes = new JList<>(opcoesArray);
@@ -21,7 +21,7 @@ public class Utils {
         int resposta = JOptionPane.showConfirmDialog(
                 null,
                 scrollPane,
-                "Escolha um serviço:",
+                title,
                 JOptionPane.OK_CANCEL_OPTION,
                 JOptionPane.PLAIN_MESSAGE);
 

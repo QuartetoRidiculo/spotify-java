@@ -106,7 +106,7 @@ public class Program {
         } while (!login);
 
         while (login) {
-            int choice = Utils.exibirMenu(mainMenu);
+            int choice = Utils.exibirMenu(mainMenu, "Menu Principal");
 
             if (choice == -1 || choice == 2) {
                 int exit = JOptionPane.showConfirmDialog(null, "Deseja encerrar o programa?");
@@ -118,7 +118,7 @@ public class Program {
             switch (choice) {
                 case 0: // Gerenciar playlists
                     while (true) {
-                        int playlistChoice = Utils.exibirMenu(playlistMenu);
+                        int playlistChoice = Utils.exibirMenu(playlistMenu, "Gerenciar Playlists");
                         if (playlistChoice == -1) break;
 
                         switch (playlistChoice) {
@@ -132,7 +132,8 @@ public class Program {
                                 PlaylistService.addMediaPlaylist(user, catalog);
                                 break;
                             case 3:
-                                // Remover mídia da playlist (a implementar)
+                                PlaylistService.removeMediaPlaylist(user
+                                );
                                 break;
                             case 4:
                                 PlaylistService.viewPlaylistInformation(user);
@@ -148,12 +149,12 @@ public class Program {
 
                 case 1: // Catálogo de mídias
                     while (true) {
-                        int catalogChoice = Utils.exibirMenu(catalogMenu);
+                        int catalogChoice = Utils.exibirMenu(catalogMenu, "Catálogo de Mídias");
                         if (catalogChoice == -1) break;
 
                         switch (catalogChoice) {
                             case 0:
-                                int escolhaMidia = Utils.exibirMenu(choiceMedia);
+                                int escolhaMidia = Utils.exibirMenu(choiceMedia, "Escolha o Tipo de Mídia");
                                 if (escolhaMidia == -1) break;
 
                                 switch (escolhaMidia) {
@@ -183,11 +184,11 @@ public class Program {
                                 // Buscar podcast (implementar)
                                 break;
                             case 5:
-                                String titulo = JOptionPane.showInputDialog(null, "Digite o título para realizar a busca: ");
+                                String titulo = JOptionPane.showInputDialog(null, "Digite o título: ");
                                 catalog.buscarPorTitulo(titulo);
                                 break;
                             case 6:
-                                String artista = JOptionPane.showInputDialog(null, "Digite o nome do artista para realizar a busca: ");
+                                String artista = JOptionPane.showInputDialog(null, "Digite o nome do artista: ");
                                 catalog.buscarPorArtista(artista);
                                 break;
                             case 7:

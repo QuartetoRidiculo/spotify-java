@@ -20,6 +20,4 @@ public class ListMedia {
     public static void listPodcast(Catalog catalog){
         JOptionPane.showMessageDialog(null, catalog.listPodcast());
     }
-
-
 }
