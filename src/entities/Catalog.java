@@ -45,9 +45,9 @@ public class Catalog {
     }
 
     //Método para listar músicas
-    public String listMusic(){
+    public String listMusic() {
 
-    StringBuilder sbMusic = new StringBuilder();
+        StringBuilder sbMusic = new StringBuilder();
 
         for (Medias i : mediaList) {
 
@@ -62,14 +62,14 @@ public class Catalog {
     }
 
     //Método para listar audiobooks
-    public String listAudiobook(){
+    public String listAudiobook() {
 
-    StringBuilder sbAudiobook = new StringBuilder();
+        StringBuilder sbAudiobook = new StringBuilder();
 
         for (Medias i : mediaList) {
 
             //SE a midia listada for instância de audiobook, ela será adicionada ao StringBuilder
-            if(i instanceof Audiobook){
+            if (i instanceof Audiobook) {
                 sbAudiobook.append(i).append("\n\n");
             }
 
@@ -80,9 +80,9 @@ public class Catalog {
     }
 
     //Método para listar podcast
-    public String listPodcast(){
+    public String listPodcast() {
 
-    StringBuilder sbPodcast = new StringBuilder();
+        StringBuilder sbPodcast = new StringBuilder();
 
         for (Medias i : mediaList) {
 
@@ -101,17 +101,8 @@ public class Catalog {
 
 
     //Método para adicionar mídia
-    public void addMedia(Medias media) throws ValidTime {
-
-        //Fazendo exceção de tempo válido
-        if (media.getMinutes() < 0 || media.getSeconds() > 59 || media.getSeconds() < 0) {
-
-            throw new ValidTime("Insira um tempo válido");
-
-        }
-
+    public void addMedia(Medias media) {
         mediaList.add(media);
-
     }
 
     //Método para remover mídia
@@ -161,7 +152,7 @@ public class Catalog {
             GeneroEscolhido = Utils.exibirMenu(genreAudiobook);
             genero = Genre.values()[GeneroEscolhido + 6];
         }
-      
+
         ArrayList<String> MidiaFiltrada = new ArrayList<>();
 
         for (Medias midia : mediaList) {
@@ -169,16 +160,16 @@ public class Catalog {
                 MidiaFiltrada.add(midia.getTitle());
             }
         }
-      
-        String resultado = String.join("/n",MidiaFiltrada);
-      
+
+        String resultado = String.join("/n", MidiaFiltrada);
+
         if (MidiaFiltrada.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "nelhuma midia encontrada"+ resultado);
+            JOptionPane.showMessageDialog(null, "Nenhuma mídia foi encontrada.");
         } else {
             JOptionPane.showMessageDialog(null, resultado);
         }
     }
-      
+
     public ArrayList<String> getMediaTitles() {
         ArrayList<String> titles = new ArrayList<>();
         for (Medias m : mediaList) {

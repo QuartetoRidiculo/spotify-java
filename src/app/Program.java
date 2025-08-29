@@ -2,7 +2,6 @@ package app;
 
 import entities.*;
 import enums.Genre;
-import exceptions.ValidTime;
 import service.*;
 import utils.Utils;
 
@@ -101,13 +100,9 @@ public class Program {
             Medias audiobook = new Audiobook("O Hobbit", "J. R. R Tolkien", 180, 30, Genre.FANTASY);
             Medias podcast = new Podcast("Entrevistando Sophio", "Flow Podcast", 120, 30);
 
-            try {
-                catalog.addMedia(music);
-                catalog.addMedia(audiobook);
-                catalog.addMedia(podcast);
-            } catch (ValidTime e) {
-                System.out.println(e.getMessage());
-            }
+            catalog.addMedia(music);
+            catalog.addMedia(audiobook);
+            catalog.addMedia(podcast);
         } while (!login);
 
         while (login) {
