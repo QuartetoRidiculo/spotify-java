@@ -34,6 +34,10 @@ public class PlaylistService {
         }
         int playlistChoice = Utils.exibirMenu(user.getPlaylistNames(), "Selecionar Playlist");
 
+        if (playlistChoice == -1 || playlistChoice == -2) {
+            return;
+        }
+
         user.deletePlaylist(playlistChoice);
 
         JOptionPane.showMessageDialog(null, "Removido com sucesso!");
@@ -84,7 +88,7 @@ public class PlaylistService {
 
         int playlistId = Utils.exibirMenu(user.getPlaylistNames(), "Selecionar Playlist");
 
-        if (playlistId == -1) {
+        if (playlistId == -1 || playlistId == -2) {
             return;
         }
 
@@ -94,9 +98,14 @@ public class PlaylistService {
             medias.add(m.getTitle());
         }
 
+        if (medias.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nenhuma mídia foi encontrada.");
+            return;
+        }
+
         int mediaId = Utils.exibirMenu(medias, "Selecionar Mídia");
 
-        if (mediaId == -1) {
+        if (mediaId == -1 || mediaId == -2) {
             return;
         }
 
@@ -111,7 +120,7 @@ public class PlaylistService {
             return;
         }
 
-        int playlistId = Utils.exibirMenu(user.getPlaylistNames(),  "Selecionar Playlist");
+        int playlistId = Utils.exibirMenu(user.getPlaylistNames(), "Selecionar Playlist");
 
         if (playlistId == -1 || playlistId == -2) {
             return;
@@ -126,7 +135,7 @@ public class PlaylistService {
             return;
         }
 
-        int playlistChoice = Utils.exibirMenu(user.getPlaylistNames(),  "Selecionar Playlist");
+        int playlistChoice = Utils.exibirMenu(user.getPlaylistNames(), "Selecionar Playlist");
 
         if (playlistChoice == -1 || playlistChoice == -2) {
             return;
@@ -134,7 +143,7 @@ public class PlaylistService {
 
         for (int c = 0; c < user.getPlaylistNames().size(); c++) {
             if (playlistChoice == c) {
-              user.getFormattedPlaylistMedias(c);
+                user.getFormattedPlaylistMedias(c);
             }
         }
     }
