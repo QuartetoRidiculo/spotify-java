@@ -81,4 +81,5 @@ public abstract class Medias{
     public void setGenre(Genre genre) {
         this.genre = genre;
     }
+
 }
