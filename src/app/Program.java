@@ -9,6 +9,7 @@ import utils.Utils;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Program {
 
@@ -188,6 +189,7 @@ public class Program {
 
                                     case 0:
                                         //Add Audiobook
+
                                         AddMedia.createAudiobook(genreAudiobook, catalog);
                                         break;
                                     case 1:

@@ -2,6 +2,7 @@ package service;
 
 import entities.*;
 import enums.Genre;
+import exceptions.CancelOperation;
 import exceptions.ValidTime;
 import utils.Utils;
 
@@ -14,22 +15,26 @@ public class AddMedia {
 
     //Aqui começamos coletando os dados do "genreAudiobook para musicas/audiobook e catalog" lista de opções já criadas.
     public static void createAudiobook(List<String> genreAudiobook, Catalog catalog) {
-        
+        try {
         //O "Objeto []" é o tipo da variável que está disponibilizando as informações captadas na classe "ObterDadosMedia" Como: títulos, artistass e etc..., Para a variável infoAudiobook
         Object[] infoAudiobook = ObterDadosMedia.obterDadosMedia();
 
         //aqui a index onde solicita o menu geral criado na classe "Utils"
+
         int generoEscolhido = Utils.exibirMenu(genreAudiobook);
         Genre genero = Genre.values()[generoEscolhido + 6];
 
+        
         //Aqui é adicionadas as informações seguindo a posição pré-determinada e é adicionada a variável que recebe os valores
         Medias audiobook = new Audiobook((String) infoAudiobook[0], (String) infoAudiobook[1], (Integer) infoAudiobook[2], (Integer) infoAudiobook[3], genero);
 
         //Try-catch é inserido para confirmar se a ação foi efetuada com sucesso ou ocorreu alguma falha.
-        try {
+
             //aqui é onde a mídia é adicionada ao catalogo principal através do "catalog.addMedia(audiobook);"
             catalog.addMedia(audiobook);
             JOptionPane.showMessageDialog(null,"Audiobook cadastrado com sucesso!");
+        } catch (CancelOperation e){
+            //Faz nada
         } catch (ValidTime e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
