@@ -1,7 +1,6 @@
 package entities;
 
 import enums.Genre;
-import exceptions.ValidTime;
 import utils.Utils;
 
 import javax.swing.*;

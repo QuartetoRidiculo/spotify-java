@@ -1,6 +1,6 @@
 package service;
 
-import exceptions.CancelOperation;
+import exceptions.CancelOperationException;
 
 import javax.swing.*;
 
@@ -10,7 +10,7 @@ public class ObterDadosMedia {
 
     /*Objeto é criado com o intuito de obter todos os valores em um único item, Sem a necessitar a inserção de muitas variáveis distintas.
     O mesmo irá armazenar todos os valores como uma "Mini Lista"*/
-    public static Object[] obterDadosMedia () throws CancelOperation {
+    public static Object[] obterDadosMedia () throws CancelOperationException {
         //Ele irá retornar os seguintes valores armazenados
         String titulo;
         while (true) {
@@ -20,7 +20,7 @@ public class ObterDadosMedia {
             if (titulo == null) {
                 int exit = JOptionPane.showConfirmDialog(null, "Deseja cancelar?");
                 if (exit == JOptionPane.YES_OPTION) {
-                    throw new CancelOperation();
+                    throw new CancelOperationException();
                 }
                 continue;
             }
@@ -43,7 +43,7 @@ public class ObterDadosMedia {
             if (artista == null) {
                 int exit = JOptionPane.showConfirmDialog(null, "Deseja cancelar?");
                 if (exit == JOptionPane.YES_OPTION) {
-                    throw new CancelOperation();
+                    throw new CancelOperationException();
                 }
                 continue;
             }
@@ -67,7 +67,7 @@ public class ObterDadosMedia {
             if (input == null) {
                 int exit = JOptionPane.showConfirmDialog(null, "Deseja cancelar?");
                 if (exit == JOptionPane.YES_OPTION) {
-                    throw new CancelOperation();
+                    throw new CancelOperationException();
                 }
                 continue;
             }
@@ -78,7 +78,7 @@ public class ObterDadosMedia {
                 if (minutos == -1) {
                     int exit = JOptionPane.showConfirmDialog(null, "Deseja cancelar?");
                     if (exit == JOptionPane.YES_OPTION) {
-                        throw new CancelOperation();
+                        throw new CancelOperationException();
                     }
                     continue;
                 }
@@ -101,7 +101,7 @@ public class ObterDadosMedia {
             if (input == null) {
                 int exit = JOptionPane.showConfirmDialog(null, "Deseja cancelar?");
                 if (exit == JOptionPane.YES_OPTION) {
-                    throw new CancelOperation();
+                    throw new CancelOperationException();
                 }
                 continue;
             }
@@ -112,7 +112,7 @@ public class ObterDadosMedia {
                 if (segundos == -1) {
                     int exit = JOptionPane.showConfirmDialog(null, "Deseja cancelar?");
                     if (exit == JOptionPane.YES_OPTION) {
-                        throw new CancelOperation();
+                        throw new CancelOperationException();
                     }
                     continue;
                 }

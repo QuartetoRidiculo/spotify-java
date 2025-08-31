@@ -1,7 +1,7 @@
 package exceptions;
 
-public class CancelOperation extends RuntimeException {
-    public CancelOperation() {
+public class CancelOperationException extends RuntimeException {
+    public CancelOperationException() {
         super("Operação cancelada pelo usuário.");
     }
 }
