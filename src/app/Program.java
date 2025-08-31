@@ -176,23 +176,47 @@ public class Program {
                                 break;
                             case 2:
                                 ListMedia.listAudiobook(catalog);
-                                // Buscar audiobook (implementar)
                                 break;
                             case 3:
                                 ListMedia.listMusic(catalog);
-                                // Buscar música (implementar)
                                 break;
                             case 4:
                                 ListMedia.listPodcast(catalog);
-                                // Buscar podcast (implementar)
                                 break;
                             case 5:
-                                String titulo = JOptionPane.showInputDialog(null, "Digite o título: ");
-                                catalog.buscarPorTitulo(titulo);
+                                String titulo = "";
+
+                                while (true) {
+                                    titulo = JOptionPane.showInputDialog(null, "Digite o título: ");
+
+                                    if (titulo == null) {
+                                        titulo = "";
+                                        break;
+                                    }
+
+                                    if (titulo.isBlank()) continue;
+
+                                    break;
+                                }
+
+                                if (!titulo.isEmpty()) catalog.buscarPorTitulo(titulo);
                                 break;
                             case 6:
-                                String artista = JOptionPane.showInputDialog(null, "Digite o nome do artista: ");
-                                catalog.buscarPorArtista(artista);
+                                String artista = "";
+                                while (true) {
+                                    artista = JOptionPane.showInputDialog(null, "Digite o nome do artista: ");
+
+                                    if (artista == null) {
+                                        artista = "";
+                                        break;
+                                    }
+
+                                    if (artista.isBlank()) continue;
+
+                                    break;
+                                }
+
+                                if (!artista.isEmpty()) catalog.buscarPorArtista(artista);
                                 break;
                             case 7:
                                 catalog.BuscarPorGenero(genreAudiobook, genreMusic);
