@@ -10,12 +10,12 @@ public class ObterDadosMedia {
 
     /*Objeto é criado com o intuito de obter todos os valores em um único item, Sem a necessitar a inserção de muitas variáveis distintas.
     O mesmo irá armazenar todos os valores como uma "Mini Lista"*/
-    public static Object[] obterDadosMedia () throws CancelOperationException {
+    public static Object[] obterDadosMedia() throws CancelOperationException {
         //Ele irá retornar os seguintes valores armazenados
         String titulo;
         while (true) {
 
-            titulo = JOptionPane.showInputDialog(null, "Insira o titulo: ");
+            titulo = JOptionPane.showInputDialog(null, "Insira o título: ");
 
             if (titulo == null) {
                 int exit = JOptionPane.showConfirmDialog(null, "Deseja cancelar?");
@@ -24,13 +24,13 @@ public class ObterDadosMedia {
                 }
                 continue;
             }
-            try {
-                if (titulo.isBlank()){
-                    continue;
-                }
-            } catch (NullPointerException e) {
-                JOptionPane.showMessageDialog(null, "Por favor insira uma opção válida.");
+
+            if (titulo.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Insira um título válido.");
+                continue;
             }
+
+
             break;
         }
 
@@ -47,18 +47,13 @@ public class ObterDadosMedia {
                 }
                 continue;
             }
-            try {
-                if (artista.isEmpty()){
-                    continue;
-                }
-            } catch (NullPointerException e) {
-                if (artista == null){
-                    JOptionPane.showMessageDialog(null, "Por favor insira uma opção válida.");
-                }
+
+            if (artista.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Insira um nome válido.");
+                continue;
             }
             break;
         }
-
         int minutos = 0;
 
         while (true) {
@@ -85,8 +80,8 @@ public class ObterDadosMedia {
 
                 if (minutos >= Integer.MAX_VALUE) {
                     continue;
-                } else {
                 }
+
                 break;
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Por favor insira um número válido.");
@@ -136,3 +131,4 @@ public class ObterDadosMedia {
         return new Object[0];
     }
 }
+
